@@ -1,24 +1,35 @@
-# README
+# ぼどげむ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+### サイトテーマ
+ボードゲームの評価やジャンルが分かるレビューサイト
+​
+### テーマを選んだ理由
 
-* Ruby version
+元々ボードゲームが好きで、色々なものを調べ購入してきたのですが、やはり説明を
+見るだけでは分からないことも多く、購入してから判明することもありました。
+そのゲームの特徴、推奨人数、プレイ時間などが詳細に知れるサービスがあれば便利だと思いました。
+また、自分のオススメしたいゲームも詳しく説明できる機能があればいいと思い、このテーマにしました。
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### ターゲットユーザ
+* ボードゲームが好きで、自分の好きなボードゲームを共有したい人
+* 各ボードゲームの評価、ジャンルなどが知りたい人
+​
+### 主な利用シーン
+* 自分のプレイしたオススメのボードゲームの評価を投稿したいとき
+* 気になったボードゲームの評価を見たいとき
+​
+## 設計書
+後ほど作成予定
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+著作権を考慮し、架空のデータを扱う予定です。
+なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
