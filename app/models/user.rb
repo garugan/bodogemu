@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   validates :name, uniqueness: true, length: { minimum: 2 }
   validates :email, uniqueness: true
+
+  has_many :reviews, dependent: :destroy
 end
