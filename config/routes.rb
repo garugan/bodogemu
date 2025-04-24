@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "homes#top"
+  post 'guest_login', to: 'users#guest_login'
 
   resources :reviews
   resources :users

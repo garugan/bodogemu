@@ -17,4 +17,12 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def self.guest
+    user = User.find_or_initialize_by(email: "guest@guest.com")
+    user.password = "kirisawa2"
+    user.name = "guest"
+    user.save
+    user
+  end
 end

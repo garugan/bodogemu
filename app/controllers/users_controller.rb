@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @users = user.all
+    @user = current_user
+    @users = User.all
   end
 
   def edit
@@ -20,10 +21,15 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def guest_login
+    user = User.guest
+    sign_in user
+    redirect_to users_path(user), notice: 'ゲストユーザーとしてログインしました。'
   end
 
   private

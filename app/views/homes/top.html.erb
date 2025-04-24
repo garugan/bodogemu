@@ -2,12 +2,13 @@
 
   <h1><i class="fa-solid fa-dice">ぼどげむ</i>へようこそ</h1><br>
   <p><i class="fa-solid fa-dice">ぼどげむ</i>とは</p>
-  <p>ボードゲーム好きによるボードゲーム好きのための、ボードゲームレビュー投稿サイトです<p><br>
+  <p>ボードゲーム好きによるボードゲーム好きのための、ボードゲームレビュー投稿サイトです</p><br>
 
   <div class="d-flex flex-column text-nowrap align-items-center">
     <%= link_to "ログイン", new_user_session_path, class: "btn btn-success w-25 mb-3" %>
     <%= link_to "新規登録", new_user_registration_path, class: "btn btn-info w-25 mb-5" %>
-    <%= link_to "ゲストとしてログイン", new_user_registration_path, class: "btn btn-secondary w-25" %>
+    <%= link_to "ゲストとしてログイン", guest_login_path, method: :post, class: "btn btn-secondary w-25" %>
+
   </div>
 
 </div>
