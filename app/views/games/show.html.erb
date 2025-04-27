@@ -1,2 +1,11 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= render "/users/userinfo" %>
+
+    <div class="col-md-8 offset-md-1">
+      <h1><%= @game.title %></h1>
+      <h5>ジャンル：<%= @genre.name %></h5>
+      <p><%= @game.body %></p>
+    </div>
+  </div>
+</div>

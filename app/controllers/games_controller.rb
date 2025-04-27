@@ -8,6 +8,9 @@ class GamesController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @game = Game.find(params[:id])
+    @genre = Genre.find(params[:id])
   end
 
   def game_review
