@@ -5,9 +5,9 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.user_id = curent_user.id
-    review.save
-    redirect_to '/top'
+    @review.user_id = current_user.id
+    @review.save
+    redirect_to '/games'
   end
 
   def index
