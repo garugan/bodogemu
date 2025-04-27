@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
 
   has_one_attached :game_image
+  has_many :reviews, dependent: :destroy
+  belongs_to :game
 
   def get_game_image(width, height)
     unless game_image.attached?
