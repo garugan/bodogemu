@@ -1,2 +1,28 @@
-<h1>Games#index</h1>
-<p>Find me in app/views/games/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= render "/users/userinfo" %>
+    
+    <div class="col-md-8 offset-md-1">
+      <h1>ゲーム一覧</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>title</th>
+            <th></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @games.each do |game| %>
+            <tr>
+              <td>画像未設定</td>
+              <td><%= game.title %></td>
+              <td><%= link_to "ゲーム詳細", game_path(game.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+    </div>
+  </div>
+</div>

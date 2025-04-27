@@ -13,14 +13,14 @@
           </tr>
         </thead>
 
-        <% @users.each do |user| %>
         <tbody>
-          <tr>
-            <td><%= image_tag user.get_profile_image(100,100) %></td>
-            <td><%= user.name %></td>
-            <td><%= link_to "投稿レビュー", user_path(user.id) %></td>
-          <tr>
-        <% end %>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image(100,100) %></td>
+              <td><%= user.name %></td>
+              <td><%= link_to "投稿レビュー", user_path(user.id) %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table> 
     </div>
