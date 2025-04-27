@@ -7,6 +7,15 @@
       <h5>ジャンル：<%= @genre.name %></h5>
       <p><%= @game.body %></p>
 
+      <h3>新規レビュー投稿</h3>
+      <%= form_with model: Review.new do |f| %>
+        <h4>タイトル</h4>
+        <%= f.text_field :title %>
+        <h4>内容</h4>
+        <%= f.text_area :body %><br>
+        <%= f.submit '投稿', class: "btn btn-success" %>
+      <% end %>
+
       <h3>レビュー一覧</h3>
       <table class="table table-striped">
         <thead>
