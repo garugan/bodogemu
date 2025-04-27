@@ -6,6 +6,28 @@
       <h1><%= @game.title %></h1>
       <h5>ジャンル：<%= @genre.name %></h5>
       <p><%= @game.body %></p>
+
+      <h3>レビュー一覧</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>内容</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @reviews.each do |review| %>
+            <tr>
+              <td><%= review.title %></td>
+              <td><%= review.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
     </div>
+
+
   </div>
 </div>
+
