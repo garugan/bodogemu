@@ -8,9 +8,12 @@ class ReviewsController < ApplicationController
     @review = @game.reviews.new(review_params)
     @review.user_id = current_user.id
     if @review.save
-      redirect_to '/users'
+      redirect_to game_path(@game)
     else
-      render :index
+      @genre = Genre.find(@game.genre_id)
+      @user = current_user
+      @reviews = @game.reviews
+      render 'games/show'
     end
   end
 
@@ -19,6 +22,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find([:id])
   end
 
   def edit
