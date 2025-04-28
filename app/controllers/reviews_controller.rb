@@ -29,6 +29,12 @@ class ReviewsController < ApplicationController
   def edit
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to '/games'
+  end
+
   private
 
   def review_params
