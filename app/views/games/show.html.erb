@@ -22,21 +22,19 @@
         <thead>
           <tr>
             <th>タイトル</th>
-            <th>内容</th>
           </tr>
         </thead>
 
         <tbody>
           <% @game.reviews.each do |review| %>
+            <% next if review.id.nil? %>
             <tr>
-              <td><%= review.title %></td>
-              <td><%= review.body %></td>
+              <td><%= link_to review.title, game_review_path(@game, review) %></td>
             </tr>
           <% end %>
         </tbody>
       </table> 
     </div>
-
 
   </div>
 </div>

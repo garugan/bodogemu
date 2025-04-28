@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post 'guest_login', to: 'users#guest_login'
 
   resources :games do
-    resources :reviews, only: [:new, :create, :index]
+    resources :reviews, only: [:new, :create, :index, :show]
   end
   resources :users
   resources :genre

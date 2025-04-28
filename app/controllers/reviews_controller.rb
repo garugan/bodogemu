@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     @review = @game.reviews.new(review_params)
     @review.user_id = current_user.id
     if @review.save
-      redirect_to game_path(@game)
+      redirect_to game_review_path(@game, @review)
     else
       @genre = Genre.find(@game.genre_id)
       @user = current_user
@@ -22,7 +22,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find([:id])
+    @user = current_user
+    @review = Review.find(params[:id])
   end
 
   def edit
