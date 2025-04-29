@@ -33,9 +33,14 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    review = Review.find(params[:id])
-    review.update(review_params)
-    redirect_to game_review_path(review.game, review)
+    @review = Review.find(params[:id])
+    @game = @review.game
+    @user = current_user
+    if @review.update(review_params)
+      redirect_to game_review_path(@game, @review)
+    else
+      render :edit
+    end
   end
 
   def destroy
