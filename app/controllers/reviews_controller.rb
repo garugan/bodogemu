@@ -32,10 +32,17 @@ class ReviewsController < ApplicationController
     @game = @review.game
   end
 
+  def update
+    review = Review.find(params[:id])
+    review.update(review_params)
+    redirect_to game_review_path(review.game, review)
+  end
+
   def destroy
     review = Review.find(params[:id])
+    game = review.game
     review.destroy
-    redirect_to '/games'
+    redirect_to game_path(game)
   end
 
   private
