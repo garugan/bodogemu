@@ -5,13 +5,13 @@
     <div class="col-md-8 offset-md-1">
       <h2>レビュー編集</h2>
       <%= render "/layouts/error_messages" %>
-      
-      <%= form_with model: [@game, @review] do |f| %>
+      <%= form_with model: [@game, @review], local: true do |f| %>
         <h4>タイトル</h4>
         <%= f.text_field :title %>
 
         <h4>内容</h4>
         <%= f.text_area :body %>
+
         <br>
         <%= f.submit '更新' %>
       <% end %>

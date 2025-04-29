@@ -6,8 +6,9 @@
       <h2><%= @review.title %></h2>
       <p><%= @review.body %></p>
       <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
+      
       <% if @review.user == current_user %>
         <%= link_to "編集", edit_game_review_path(@review.game, @review) %>
-        <%= link_to "削除", game_review_path(@review.game, @review), method: :delete %>
+        <%= link_to "削除", game_review_path(@review.game, @review), method: :delete, "data-confirm" => "本当に削除しますか？" %>
       <% end %>
     </div>
