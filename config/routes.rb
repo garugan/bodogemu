@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   post 'guest_login', to: 'users#guest_login'
 
   resources :games do
-    resources :reviews, only: [:new, :create, :index, :show, :destroy]
+    resources :reviews, only: [:new, :create, :index, :show, :destroy, :edit]
   end
   resources :users
-  resources :genre
+  resources :genres
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

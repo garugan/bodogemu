@@ -27,6 +27,9 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @user = current_user
+    @review = Review.find(params[:id])
+    @game = @review.game
   end
 
   def destroy
