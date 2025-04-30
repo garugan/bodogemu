@@ -28,12 +28,18 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    unless @review.user == current_user
+      redirect_to game_review_path
+    end
     @game = @review.game
     @user = current_user
   end
 
   def update
     @review = Review.find(params[:id])
+    unless @review.user == current_user
+      redirect_to game_review_path
+    end
     @game = @review.game
     @user = current_user
     if @review.update(review_params)
@@ -44,9 +50,12 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    review = Review.find(params[:id])
-    game = review.game
-    review.destroy
+    @review = Review.find(params[:id])
+    unless @review.user == current_user
+      redirect_to game_review_path
+    end
+    game = @review.game
+    @review.destroy
     redirect_to game_path(game)
   end
 

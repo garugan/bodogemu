@@ -2,13 +2,13 @@
 
   <h2 class="text-center">ユーザー情報</h2>
   <div>
-    <%= image_tag @user.get_profile_image(100,100) %>
+    <%= image_tag current_user.get_profile_image(100,100) %>
   </div>
 
   <table class="table table-striped">
     <tr>
       <th>name</th>
-      <td><%= @user.name %></td>
+      <td><%= current_user.name %></td>
     </tr>
   </table>
   <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
