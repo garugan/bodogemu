@@ -34,9 +34,16 @@ class UsersController < ApplicationController
     redirect_to users_path(user), notice: 'ゲストユーザーとしてログインしました。'
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to :root
+  end
+
   private
   def user_params
-    params.require(:user).permit(:name, :profile_image, :introduction)
+    params.require(:user).permit(:name, :profile_image, :introduction, :email)
   end
 
 end
