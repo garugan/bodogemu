@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'genre/show'
   devise_for :users
   root to: "homes#top"
   post 'guest_login', to: 'users#guest_login'
