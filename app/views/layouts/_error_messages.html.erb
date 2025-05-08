@@ -1,10 +1,10 @@
-<% if @review && @review.errors.any? %>
-<div class="alert alert-danger">
-  <p><%= @review.errors.count %>件のエラーが発生しました</p>
-  <ul>
-    <% @review.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
+<% if object && object.errors.any? %>
+  <div class="alert alert-danger">
+    <p><%= object.errors.count %>件のエラーが発生しました</p>
+    <ul>
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

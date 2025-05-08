@@ -8,7 +8,7 @@
       <p><%= @game.body %></p>
 
       <h4>新規レビュー投稿</h4>
-      <%= render "/layouts/error_messages" %>
+      <%= render "/layouts/error_messages", object: @review %>
       <%= form_with model: [@game, Review.new], local: true do |f| %>
         <h4>タイトル</h4>
         <%= f.text_field :title %>

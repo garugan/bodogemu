@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :reviews, dependent: :destroy
 
-  validates :name, uniqueness: true, length: { minimum: 2 }
-  validates :email, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { minimum: 2 }
+  validates :email, presence: true, uniqueness: true
 
   has_one_attached :profile_image
 

@@ -4,7 +4,7 @@
 
     <div class="col-md-8 offset-md-1">
       <h2>レビュー編集</h2>
-      <%= render "/layouts/error_messages" %>
+      <%= render "/layouts/error_messages", object: @review %>
       <%= form_with model: [@game, @review], local: true do |f| %>
         <h4>タイトル</h4>
         <%= f.text_field :title %>
@@ -13,7 +13,8 @@
         <%= f.text_area :body %>
 
         <br>
-        <%= f.submit '更新' %>
+        <%= f.submit '更新' %><br>
+        <%= link_to "削除", game_review_path(@review.game, @review), method: :delete, "data-confirm" => "本当に削除しますか？" %>
       <% end %>
     </div>
 
