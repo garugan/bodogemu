@@ -1,5 +1,5 @@
 <div class="container">
-<h1>ゲーム詳細</h1>
+    <h1>ゲーム詳細（管理者）</h1>
 
     <div class="row">
       <div class="col">
@@ -12,7 +12,8 @@
         <%= @game.body %><br>
         <%= @game.genre.name %>
       </div>
-      <%= link_to '削除', admin_game_path(@game), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+        <%= link_to '編集', edit_admin_game_path(@game) %><br>
+        <%= link_to '削除', admin_game_path(@game), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
     </div>
 
 </div>

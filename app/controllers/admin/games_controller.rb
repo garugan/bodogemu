@@ -29,10 +29,23 @@ class Admin::GamesController < ApplicationController
     @games = Game.all
   end
 
-private
+  def edit
+    @game = Game.find(params[:id])
+  end
 
-def game_params
-  params.require(:game).permit(:title, :body, :genre_id)
-end
+  def update
+    @game = Game.find(params[:id])
+    if @game.update(game_params)
+      redirect_to admin_game_path(@game), notice: 'ゲームを更新しました'
+    else
+      render :edit
+    end
+  end
 
+
+  private
+
+  def game_params
+    params.require(:game).permit(:title, :body, :genre_id)
+  end
 end
