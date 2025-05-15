@@ -1,0 +1,18 @@
+<div class="container">
+<h1>ゲーム詳細</h1>
+
+    <div class="row">
+      <div class="col">
+        タイトル<br>
+        内容<br>
+        ジャンル
+      </div>
+      <div class="col">
+        <%= @game.title %><br>
+        <%= @game.body %><br>
+        <%= @game.genre.name %>
+      </div>
+      <%= link_to '削除', admin_game_path(@game), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+    </div>
+
+</div>

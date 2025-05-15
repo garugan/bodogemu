@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>ゲーム一覧（管理者）</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>ジャンル</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @games.each do |game| %>
+        <tr>
+          <td><%= game.title %></td>
+          <td><%= game.genre.name if game.genre %></td>
+          <td>
+            <%= link_to '詳細', admin_game_path(game.id) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
