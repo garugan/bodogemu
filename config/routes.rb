@@ -9,6 +9,7 @@ devise_for :admins, path: 'admin', controllers: {
     root to: 'dashboards#index'
     resources :dashboards, only: [:show, :destroy]
     resources :games
+    resources :genres
   end
 
   root to: "homes#top"
