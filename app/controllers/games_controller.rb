@@ -10,7 +10,7 @@ class GamesController < ApplicationController
   def show
     @user = current_user
     @game = Game.find(params[:id])
-    @genre = Genre.find(params[:id])
+    @genre = @game.genre
     @reviews = Review.all
   end
 
