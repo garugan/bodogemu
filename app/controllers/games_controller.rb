@@ -16,4 +16,5 @@ class GamesController < ApplicationController
 
   def game_review
   end
+
 end

@@ -3,11 +3,15 @@
 
     <div class="row">
       <div class="col">
+        画像<br>
         タイトル<br>
         内容<br>
         ジャンル
       </div>
       <div class="col">
+        <% if @game.image.attached? %>
+          <%= image_tag @game.image, class: "img-fluid", width: 300 %>
+        <% end %><br>
         <%= @game.title %><br>
         <%= @game.body %><br>
         <%= @game.genre.name %>

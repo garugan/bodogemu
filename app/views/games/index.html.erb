@@ -15,12 +15,12 @@
         <tbody>
           <% @games.each do |game| %>
             <tr>
-              <td>画像未設定</td>
               <td><%= link_to game.title, game_path(game.id) %></td>
             </tr>
           <% end %>
         </tbody>
       </table> 
     </div>
+
   </div>
 </div>
