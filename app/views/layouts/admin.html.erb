@@ -9,15 +9,11 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
   <body>
     <header>
-      <%= render "layouts/navigation" %>
+      <%= render "layouts/admin_navigation" %>
     </header>
-    <% if admin_signed_in? %>
-      <div>
-        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-      </div>
-    <% end %>
     <%= yield %>
   </body>
 </html>
