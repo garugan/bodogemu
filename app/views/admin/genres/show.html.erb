@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>ジャンル詳細（管理者）</h1>
+
+    <div class="row">
+      <div class="col">
+        ジャンル名<br>
+      </div>
+      <div class="col">
+        <%= @genre.name %><br>
+      </div>
+        <%= link_to '編集', edit_admin_genre_path(@genre) %><br>
+        <%= link_to '削除', admin_genre_path(@genre), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+    </div>
+
+</div>

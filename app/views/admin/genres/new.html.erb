@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>新規ジャンル追加</h1>
+  <%= render "/layouts/error_messages", object: @genre %>
+    <%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
+      <h4>ジャンル名</h4>
+        <%= f.text_field :name %><br>
+
+      <%= f.submit '作成', class: "btn btn-success" %>
+    <% end %>
+
+</div>
