@@ -17,7 +17,7 @@
           <label for="email">email</label><br>
           <%= f.text_field :email, autofocus: true, id:"email" %>
         <br>
-          <%= f.submit "保存", class: "btn btn-secondary" %>
+          <%= f.submit "保存", class: "btn btn-success" %>
         <% end %>
 
         <% if user_signed_in? && @user == current_user %>

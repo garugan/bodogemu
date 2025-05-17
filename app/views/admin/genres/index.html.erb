@@ -1,5 +1,10 @@
 <div class="container mt-4">
-  <h1>ジャンル一覧（管理者）</h1>
+  <div class="row">
+    <h1 class="col">ジャンル一覧（管理者）</h1>
+    <%= link_to new_admin_genre_path, class: "btn btn-secondary rounded-circle p-0 d-flex justify-content-center align-items-center", style: "width:3rem;height:3rem;" do %>
+      ＋
+    <% end %>
+  </div>
 
   <table class="table table-striped">
     <thead>

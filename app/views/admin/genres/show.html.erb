@@ -1,15 +1,13 @@
 <div class="container mt-4">
-    <h1>ジャンル詳細（管理者）</h1>
+    <h1 class="mb-4">ジャンル詳細（管理者）</h1>
 
-    <div class="row">
-      <div class="col">
-        ジャンル名<br>
-      </div>
-      <div class="col">
-        <%= @genre.name %><br>
-      </div>
-        <%= link_to '編集', edit_admin_genre_path(@genre) %><br>
-        <%= link_to '削除', admin_genre_path(@genre), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+    <ul class="list-group mb-4">
+      <li class="list-group-item"><strong>タイトル：</strong> <%= @genre.name %></li>
+    </ul>
+
+    <div class="text-center">
+      <%= link_to '編集', edit_admin_genre_path(@genre), class: "btn btn-primary" %>
+      <%= link_to '削除', admin_genre_path(@genre), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger ml-2" %>
     </div>
-
 </div>
+

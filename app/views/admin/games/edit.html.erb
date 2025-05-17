@@ -14,7 +14,7 @@
         <%= f.collection_select :genre_id, Genre.all, :id, :name %>
 
         <br>
-        <%= f.submit '更新' %><br>
+        <%= f.submit '更新', class: "btn btn-success" %><br>
       <% end %>
 
     </div>
