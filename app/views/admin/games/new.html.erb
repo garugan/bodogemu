@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4">
   <h1>新規ゲーム追加</h1>
   <%= render "/layouts/error_messages", object: @game %>
     <%= form_with model: @game, url: admin_games_path, local: true do |f| %>

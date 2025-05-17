@@ -1,23 +1,22 @@
-<div class="container">
-    <h1>ゲーム詳細（管理者）</h1>
+<div class="container mt-4">
+  <h1 class="mb-4">ゲーム詳細（管理者）</h1>
 
-    <div class="row">
-      <div class="col">
-        画像<br>
-        タイトル<br>
-        内容<br>
-        ジャンル
-      </div>
-      <div class="col">
-        <% if @game.image.attached? %>
-          <%= image_tag @game.image, class: "img-fluid", width: 300 %>
-        <% end %><br>
-        <%= @game.title %><br>
-        <%= @game.body %><br>
-        <%= @game.genre.name %>
-      </div>
-        <%= link_to '編集', edit_admin_game_path(@game) %><br>
-        <%= link_to '削除', admin_game_path(@game), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
-    </div>
+  <div class="d-flex justify-content-center mb-4">
+    <% if @game.image.attached? %>
+      <%= image_tag @game.image, alt: @game.title, class: "img-thumbnail", style: "width: 500px;" %>
+    <% else %>
+      <%= image_tag 'no_image.png', alt: "No Image", class: "img-thumbnail", style: "width: 500px;" %>
+    <% end %>
+  </div>
 
+  <ul class="list-group mb-4">
+    <li class="list-group-item"><strong>タイトル：</strong> <%= @game.title %></li>
+    <li class="list-group-item"><strong>内容：</strong> <%= @game.body %></li>
+    <li class="list-group-item"><strong>ジャンル：</strong> <%= @game.genre.name %></li>
+  </ul>
+
+  <div class="text-center">
+    <%= link_to '編集', edit_admin_game_path(@game), class: "btn btn-primary" %>
+    <%= link_to '削除', admin_game_path(@game), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger ml-2" %>
+  </div>
 </div>
