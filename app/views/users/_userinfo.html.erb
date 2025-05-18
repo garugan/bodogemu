@@ -1,19 +1,24 @@
 <div class="col-md-3">
 
-  <h2 class="text-center">ユーザー情報</h2>
-  <div>
-    <%= image_tag current_user.get_profile_image(100,100) %>
+  <h4 class="text-center mb-3">
+    <i class="fa-solid fa-user mr-1"></i>ユーザー情報
+  </h4>
+
+  <div class="d-flex justify-content-center mb-3">
+    <%= image_tag current_user.get_profile_image(100, 100), class: "rounded-circle border" %>
   </div>
 
-  <table class="table table-striped">
-    <tr>
-      <th>name</th>
+  <table class="table table-sm table-bordered text-center mb-3">
+    <tr class="table-light">
+      <th class="w-50">名前</th>
       <td><%= current_user.name %></td>
     </tr>
   </table>
-  <% unless @user.email == "guest@guest.com" then %>
+
+  <% unless @user.email == "guest@guest.com" %>
     <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
-      <i class="fa-solid fa-user-gear"></i>
+      <i class="fa-solid fa-user-gear mr-1"></i>プロフィール編集
     <% end %>
   <% end %>
+
 </div>

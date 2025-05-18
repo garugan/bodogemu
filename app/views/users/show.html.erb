@@ -1,26 +1,38 @@
-<div class="container">
+<div class="container my-4">
   <div class="row">
     <%= render "userinfo" %>
 
     <div class="col-md-8 offset-md-1">
-      <h4><%= @user.name %>のレビュー</h4>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>タイトル</th>
-          </tr>
-        </thead>
+      <h2 class="mb-4">
+        <i class="fa-solid fa-comment mr-2"></i><%= @user.name %>のレビュー一覧
+      </h2>
 
-        <tbody>
-          <% @user.reviews.each do |review| %>
-            <% next if review.id.nil? %>
-            <tr>
-              <td><%= link_to review.title, game_review_path(review.game, review) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table> 
+      <% if @user.reviews.present? %>
+        <div class="table-responsive">
+          <table class="table table-striped text-center">
+            <thead class="thead-light">
+              <tr>
+                <th>レビュータイトル</th>
+                <th>ゲーム名</th>
+                <th>投稿日</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.reviews.each do |review| %>
+                <tr>
+                  <td>
+                    <%= link_to review.title, game_review_path(review.game, review), class: "btn btn-link" %>
+                  </td>
+                  <td><%= link_to review.game.title, game_path(review.game), class: "btn btn-link" %></td>
+                  <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="text-muted">レビューはまだ投稿されていません。</p>
+      <% end %>
     </div>
-    
   </div>
 </div>

@@ -1,41 +1,60 @@
-<div class="container">
-  <div class="row">
+<div class="container mt-4">
+  <div class="row mb-4">
     <%= render "/users/userinfo" %>
 
-    <div class="col-md-8 offset-md-1">
-      <h1><%= @game.title %></h1>
-      <h5>ジャンル：<%= @genre.name %></h5>
-      <p><%= @game.body %></p>
-
-      <h4>新規レビュー投稿</h4>
-      <%= render "/layouts/error_messages", object: @review %>
-      <%= form_with model: [@game, Review.new], local: true do |f| %>
-        <h4>タイトル</h4>
-        <%= f.text_field :title %>
-        <h4>内容</h4>
-        <%= f.text_area :body %><br>
-        <%= f.submit '投稿', class: "btn btn-success" %>
+    <div class="col-md-9 d-flex justify-content-center align-items-center">
+      <% if @game.image.attached? %>
+        <%= image_tag @game.image, alt: @game.title, class: "img-thumbnail", style: "width: 300px; height: 300px; object-fit: cover;" %>
+      <% else %>
+        <%= image_tag 'no_image.png', alt: "No Image", class: "img-thumbnail mx-auto d-block", style: "width: 300px;" %>
       <% end %>
-
-      <h4>レビュー一覧</h4>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>タイトル</th>
-            <th>投稿者</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @game.reviews.each do |review| %>
-            <% next if review.id.nil? %>
-            <tr>
-              <td><%= link_to review.title, game_review_path(@game, review) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table> 
     </div>
+  </div>
 
+  <ul class="list-group mb-4">
+    <li class="list-group-item"><strong>タイトル：</strong> <%= @game.title %></li>
+    <li class="list-group-item"><strong>内容：</strong> <%= @game.body %></li>
+    <li class="list-group-item"><strong>ジャンル：</strong> <%= @game.genre.name %></li>
+  </ul>
+
+  <div class="mb-5">
+    <h4 class="mb-3">新規レビュー投稿</h4>
+    <%= render "/layouts/error_messages", object: @review %>
+    <%= form_with model: [@game, Review.new], local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :body, "内容" %>
+        <%= f.text_area :body, class: "form-control", rows: 4 %>
+      </div>
+
+      <%= f.submit '投稿', class: "btn btn-success" %>
+    <% end %>
+  </div>
+
+  <div class="mb-5">
+    <h4 class="mb-3">レビュー一覧</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>投稿者</th>
+          <th>投稿日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @game.reviews.each do |review| %>
+          <% next if review.id.nil? %>
+          <tr>
+            <td><%= link_to review.title, game_review_path(@game, review) %></td>
+            <td><%= link_to review.user.name, user_path(review.user) %></td>
+            <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -3,9 +3,9 @@
 
   <div class="d-flex justify-content-center mb-4">
     <% if @game.image.attached? %>
-      <%= image_tag @game.image, alt: @game.title, class: "img-thumbnail", style: "width: 500px;" %>
+      <%= image_tag @game.image, alt: @game.title, class: "img-thumbnail", style: "width: 300px; height: 300px; object-fit: cover;" %>
     <% else %>
-      <%= image_tag 'no_image.png', alt: "No Image", class: "img-thumbnail", style: "width: 500px;" %>
+      <%= image_tag 'no_image.png', alt: "No Image", class: "img-thumbnail", style: "width: 300px; height: 300px; object-fit: cover;" %>
     <% end %>
   </div>
 

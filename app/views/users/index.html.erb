@@ -1,29 +1,35 @@
-<div class="container">
+<div class="container my-4">
   <div class="row">
     <%= render "userinfo" %>
 
     <div class="col-md-8 offset-md-1">
-      <h1>ユーザー一覧</h1>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>画像</th>
-            <th>名前</th>
-            <th></th>
-          </tr>
-        </thead>
+    <h2 class="mb-4"><i class="fa-solid fa-user mr-2"></i>ユーザー一覧</h2>
 
-        <tbody>
-          <% @users.each do |user| %>
+      <div class="table-responsive">
+        <table class="table table-striped align-middle text-center">
+          <thead class="thead-light">
             <tr>
-              <td><%= image_tag user.get_profile_image(100,100) %></td>
-              <td><%= user.name %></td>
-              <td><%= link_to "投稿レビュー", user_path(user.id) %></td>
+              <th>画像</th>
+              <th>名前</th>
+              <th></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table> 
+          </thead>
+
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= image_tag user.get_profile_image(80, 80), class: "rounded-circle" %>
+                </td>
+                <td class="align-middle"><%= user.name %></td>
+                <td class="align-middle">
+                  <%= link_to "投稿レビュー", user_path(user.id), class: "btn btn-outline-primary btn-sm" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
-    
   </div>
 </div>
