@@ -1,0 +1,12 @@
+<div class="container mt-4">
+  <h2 class="mb-4">レビュー詳細（管理）</h2>
+
+  <ul class="list-group mb-4">
+    <li class="list-group-item"><strong>名前：</strong> <%= @review.title %></li>
+    <li class="list-group-item"><strong>内容：</strong> <%= @review.body %></li>
+  </ul>
+
+  <div class="text-center">
+    <%= link_to '削除', admin_review_path(@review), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger ml-2"  %> 
+  </div>
+</div>
