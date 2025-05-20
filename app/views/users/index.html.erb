@@ -3,7 +3,7 @@
     <%= render "userinfo" %>
 
     <div class="col-md-8 offset-md-1">
-    <h2 class="mb-4"><i class="fa-solid fa-user mr-2"></i>ユーザー一覧</h2>
+    <h2 class="mb-4"><i class="fa-solid fa-users mr-2"></i>ユーザー一覧</h2>
 
       <div class="table-responsive">
         <table class="table table-striped align-middle text-center">
@@ -18,13 +18,9 @@
           <tbody>
             <% @users.each do |user| %>
               <tr>
-                <td>
-                  <%= image_tag user.get_profile_image(80, 80), class: "rounded-circle" %>
-                </td>
+                <td><%= image_tag user.get_profile_image(80, 80), class: "rounded-circle" %></td>
                 <td class="align-middle"><%= user.name %></td>
-                <td class="align-middle">
-                  <%= link_to "投稿レビュー", user_path(user.id), class: "btn btn-outline-primary btn-sm" %>
-                </td>
+                <td class="align-middle"><%= link_to "投稿レビュー", user_path(user.id), class: "btn btn-outline-primary btn-sm" %></td>
               </tr>
             <% end %>
           </tbody>

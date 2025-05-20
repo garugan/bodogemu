@@ -14,4 +14,36 @@
   <div class="text-center">
     <%= link_to '削除', admin_dashboard_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger ml-2"  %> 
   </div>
+
+  <h2 class="mb-4 mt-5">
+    <i class="fa-solid fa-comments mr-2"></i><%= @user.name %>のレビュー一覧
+  </h2>
+
+  <% if @user.reviews.present? %>
+    <div class="table-responsive">
+      <table class="table table-striped text-center">
+        <thead class="thead-light">
+          <tr>
+            <th>レビュータイトル</th>
+            <th>ゲーム名</th>
+            <th>投稿日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.reviews.each do |review| %>
+            <tr>
+              <td>
+                <%= link_to review.title, admin_review_path(review), class: "btn btn-link" %>
+              </td>
+              <td><%= link_to review.game.title, admin_game_path(review.game), class: "btn btn-link" %></td>
+              <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-muted">レビューはまだ投稿されていません。</p>
+  <% end %>
+
 </div>
