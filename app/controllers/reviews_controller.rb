@@ -24,6 +24,9 @@ class ReviewsController < ApplicationController
   def show
     @user = current_user
     @review = Review.find(params[:id])
+    @game = @review.game
+    @review_comment = ReviewComment.new
+    @review_comments = ReviewComment.all
   end
 
   def edit

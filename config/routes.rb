@@ -18,7 +18,9 @@ devise_for :admins, path: 'admin', controllers: {
   post 'guest_login', to: 'users#guest_login'
 
   resources :games do
-    resources :reviews
+    resources :reviews do
+      resources :review_comments
+    end
   end
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
