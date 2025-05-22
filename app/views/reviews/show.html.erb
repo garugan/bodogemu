@@ -26,7 +26,7 @@
         <%= render "/layouts/error_messages", object: @review %>
           <%= form_with model: [@game, @review, @review_comment], local: true do |f| %>
             <div class="form-group">
-              <%= f.label :comment, "コメント" %>
+              <%= f.label :comment, "内容" %>
               <%= f.text_area :comment, class: "form-control", rows: 1 %>
             </div>
             <%= f.submit '投稿', class: "btn btn-success" %>
@@ -41,19 +41,22 @@
               <th>内容</th>
               <th>投稿者</th>
               <th>投稿日</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <% @game.reviews.each do |review| %>
-              <% review.review_comments.each do |review_comment| %>
-                <% next if review.id.nil? %>
+              <% @review.review_comments.each do |comment| %>
                 <tr>
-                  <td><%= review_comment.comment %></td>
-                  <td><%= link_to review_comment.user.name, user_path(review.user) %></td>
-                  <td><%= review_comment.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= comment.comment %></td>
+                  <td><%= link_to comment.user.name, user_path(comment.user) %></td>
+                  <td><%= comment.created_at.strftime("%Y-%m-%d") %></td>
+                  <td>
+                    <% if comment.user == current_user %>
+                        <%= link_to "削除", game_review_review_comment_path(@review.game, @review, comment), method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
-            <% end %>
           </tbody>
         </table>
       </div>

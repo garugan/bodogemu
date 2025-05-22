@@ -1,6 +1,7 @@
 class ReviewCommentsController < ApplicationController
   def create
     @review = Review.find(params[:review_id])
+    @game = @review.game
     @comment = current_user.review_comments.new(review_comment_params)
     @comment.review_id = @review.id
     if @comment.save
@@ -11,8 +12,10 @@ class ReviewCommentsController < ApplicationController
   end
 
   def destroy
-    @comment = ReviewComment.find(params[:id])
-    comment.destroy
+    @review = Review.find(params[:review_id])
+    @comment = @review.review_comments.find(params[:id])
+    @comment.destroy
+    redirect_to game_review_path(@review.game, @review), notice: "コメントを削除しました"
   end
 
   def index
