@@ -23,7 +23,7 @@
 
       <div class="mb-5 mt-3">
         <h4 class="mb-3">コメント投稿</h4>
-        <%= render "/layouts/error_messages", object: @review %>
+        <%= render "/layouts/error_messages", object: @review_comment %>
           <%= form_with model: [@game, @review, @review_comment], local: true do |f| %>
             <div class="form-group">
               <%= f.label :comment, "内容" %>

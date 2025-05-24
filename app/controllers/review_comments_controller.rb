@@ -1,13 +1,13 @@
 class ReviewCommentsController < ApplicationController
   def create
-    @review = Review.find(params[:review_id])
-    @game = @review.game
-    @comment = current_user.review_comments.new(review_comment_params)
-    @comment.review_id = @review.id
-    if @comment.save
+    @game = Game.find(params[:game_id])
+    @review = @game.reviews.find(params[:review_id])
+    @review_comment = current_user.review_comments.new(review_comment_params)
+    @review_comment.review = @review
+    if @review_comment.save
       redirect_to game_review_path(@game, @review)
     else
-      render 'reviews/show'
+      render 'reviews/show', status: :unprocessable_entity
     end
   end
 
