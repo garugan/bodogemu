@@ -26,6 +26,21 @@
         <%= f.text_field :title, class: "form-control" %>
       </div>
 
+      <div class="note note-rating d-flex align-items-center">
+         <p class="mb-0 mr-2">評価</p>
+         <div id="star"></div>
+      </div>
+      <script>
+        document.addEventListener("turbolinks:load", function () {
+          $('#star').raty({
+            starOff: '<%= image_path("star-off.png") %>',
+            starOn:  '<%= image_path("star-on.png") %>',
+            scoreName: 'review[rating]',
+            half: true
+          });
+        });
+      </script>
+
       <div class="form-group">
         <%= f.label :body, "内容" %>
         <%= f.text_area :body, class: "form-control", rows: 4 %>
