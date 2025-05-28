@@ -32,7 +32,7 @@
     </script>
     <li class="list-group-item"><strong>タイトル：</strong> <%= @game.title %></li>
     <li class="list-group-item"><strong>内容：</strong> <%= @game.body %></li>
-    <li class="list-group-item"><strong>ジャンル：</strong> <%= @game.genre.name %></li>
+    <li class="list-group-item"><strong>ジャンル：</strong> <%= link_to @game.genre.name, genre_path(@game.genre) %></li>
   </ul>
 
   <div class="mb-5">

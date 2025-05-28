@@ -2,10 +2,27 @@
   <h2 class="mb-4">レビュー詳細（管理）</h2>
 
   <ul class="list-group mb-4">
-    <li class="list-group-item"><strong>名前：</strong> <%= @review.title %></li>
+    <li class="list-group-item"><strong>評価：</strong> <div class="review-rating" data-score="<%= @review.rating %>"></div></li>
+    <li class="list-group-item"><strong>投稿者：</strong> <%= @review.user.name %></li>
+    <li class="list-group-item"><strong>タイトル：</strong> <%= @review.title %></li>
     <li class="list-group-item"><strong>内容：</strong> <%= @review.body %></li>
+    <li class="list-group-item"><strong>ゲーム：</strong> <%= @review.game.title %></li>
     <li class="list-group-item"><strong>投稿日：</strong><%= @review.created_at.strftime("%Y/%m/%d") %></li>
   </ul>
+
+  <script>
+  document.addEventListener("turbolinks:load", function () {
+    $('#review-rating').raty({
+      readOnly: true,
+      score: function () {
+        return $(this).data('score');
+      },
+      starOff: '<%= image_path("star-off.png") %>',
+      starOn:  '<%= image_path("star-on.png") %>',
+      half: true
+    });
+  });
+</script>
 
   <div class="text-center">
     <%= link_to '削除', admin_review_path(@review), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger ml-2"  %> 
