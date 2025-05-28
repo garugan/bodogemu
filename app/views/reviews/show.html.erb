@@ -7,6 +7,24 @@
         <div class="card-body">
           <h3 class="card-title mb-4">レビュー詳細</h3>
 
+          <div class="d-flex align-items-center mb-2">
+            <p class="mb-0 mr-2"><strong>評価：</strong></p>
+            <div id="review-rating" data-score="<%= @review.rating %>"></div>
+          </div>
+          <script>
+            document.addEventListener("turbolinks:load", function () {
+              $('#review-rating').raty({
+                readOnly: true,
+                score: function () {
+                  return $(this).data('score');
+                },
+                starOff: '<%= image_path("star-off.png") %>',
+                starOn:  '<%= image_path("star-on.png") %>',
+                half: true
+              });
+            });
+          </script>
+
           <p><strong>タイトル：</strong><%= @review.title %></p>
           <p><strong>内容：</strong><%= simple_format(@review.body) %></p>
           <p><strong>ゲーム名：</strong><%= link_to @review.game.title, game_path(@review.game) %></p>

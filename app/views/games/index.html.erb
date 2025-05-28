@@ -11,6 +11,7 @@
           <tr>
             <th>タイトル</th>
             <th>ジャンル</th>
+            <th>評価</th>
           </tr>
         </thead>
 
@@ -21,9 +22,28 @@
                 <%= link_to game.title, game_path(game.id), class: "text-decoration-none" %>
               </td>
               <td><%= game.genre.name %></td>
+              <td>
+                <div class="average-rating" data-score="<%= game.average_rating %>"></div>
+              </td>
             </tr>
           <% end %>
         </tbody>
+
+        <script>
+          document.addEventListener("turbolinks:load", function () {
+            $('.average-rating').raty({
+              readOnly: true,
+              score: function () {
+                return $(this).data('score');
+              },
+              starOff: '<%= image_path("star-off.png") %>',
+              starOn:  '<%= image_path("star-on.png") %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true
+            });
+          });
+        </script>
+
       </table>
     </div>
 

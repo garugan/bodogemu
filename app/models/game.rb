@@ -15,5 +15,9 @@ class Game < ApplicationRecord
     end
     game_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def average_rating
+    reviews.average(:rating)&.round(1) || 0.0
+  end
   
 end

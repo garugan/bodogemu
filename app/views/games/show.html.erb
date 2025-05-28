@@ -12,9 +12,27 @@
   </div>
 
   <ul class="list-group mb-4">
+    <div class="list-group-item d-flex align-items-center mb-2">
+      <p class="mb-0 mr-2"><strong>評価：</strong></p>
+      <div id="average-rating" data-score="<%= @game.average_rating %>"></div>
+    </div>
+    <script>
+      document.addEventListener("turbolinks:load", function () {
+        $('#average-rating').raty({
+          readOnly: true,
+          score: function () {
+            return $(this).data('score');
+          },
+          starOff: '<%= image_path("star-off.png") %>',
+          starOn:  '<%= image_path("star-on.png") %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true
+        });
+      });
+    </script>
     <li class="list-group-item"><strong>タイトル：</strong> <%= @game.title %></li>
     <li class="list-group-item"><strong>内容：</strong> <%= @game.body %></li>
-    <li class="list-group-item"><strong>ジャンル：</strong> <%= @game.genre.name %></li>
+    <li class="list-group-item"><strong>ジャンル：</strong> <%= link_to @game.genre.name, genre_path(@game.genre) %></li>
   </ul>
 
   <div class="mb-5">
@@ -25,6 +43,21 @@
         <%= f.label :title, "タイトル" %>
         <%= f.text_field :title, class: "form-control" %>
       </div>
+
+      <div class="note note-rating d-flex align-items-center">
+         <p class="mb-0 mr-2">評価</p>
+         <div id="star"></div>
+      </div>
+      <script>
+        document.addEventListener("turbolinks:load", function () {
+          $('#star').raty({
+            starOff: '<%= image_path("star-off.png") %>',
+            starOn:  '<%= image_path("star-on.png") %>',
+            scoreName: 'review[rating]',
+            half: true
+          });
+        });
+      </script>
 
       <div class="form-group">
         <%= f.label :body, "内容" %>
@@ -43,6 +76,7 @@
           <th>タイトル</th>
           <th>投稿者</th>
           <th>投稿日</th>
+          <th>評価</th>
         </tr>
       </thead>
       <tbody>
@@ -52,9 +86,28 @@
             <td><%= link_to review.title, game_review_path(@game, review) %></td>
             <td><%= link_to review.user.name, user_path(review.user) %></td>
             <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
+            <td>
+              <div class="review-rating" data-score="<%= review.rating %>"></div>
+            </td>
           </tr>
         <% end %>
       </tbody>
+
+      <script>
+        document.addEventListener("turbolinks:load", function () {
+          $('.review-rating').each(function () {
+            var score = $(this).data('score');
+            $(this).raty({
+              readOnly: true,
+              score: score,
+              starOff: '<%= image_path("star-off.png") %>',
+              starOn:  '<%= image_path("star-on.png") %>',
+              half: true
+            });
+          });
+        });
+      </script>
+
     </table>
   </div>
 </div>

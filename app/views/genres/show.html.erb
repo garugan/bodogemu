@@ -1,0 +1,31 @@
+<div class="container my-4">
+  <div class="row">
+    <%= render "/users/userinfo" %>
+
+    <div class="col-md-8 offset-md-1">
+      <h2 class="mb-4">
+        <i class="fa-solid fa-comments mr-2"></i><%= @genre.name %>のゲーム一覧
+      </h2>
+
+        <div class="table-responsive">
+          <table class="table table-striped text-center">
+            <thead class="thead-light">
+              <tr>
+                <th>ゲーム名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @games.each do |game| %>
+                <tr>
+                  <td>
+                    <%= link_to game.title, game_path(game), class: "btn btn-link" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+  </div>
+</div>

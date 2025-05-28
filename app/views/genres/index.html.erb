@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="row">
+    <%= render "/users/userinfo" %>
+
+    <div class="col-md-8 offset-md-1">
+      <h2 class="mb-4"><i class="fa-solid fa-tags mr-2"></i>ジャンル一覧</h2>
+
+      <table class="table table-striped text-center">
+        <thead class="thead-light">
+          <tr>
+            <th>タイトル</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @genres.each do |genre| %>
+            <tr>
+              <td>
+                <%= link_to genre.name, genre_path(genre), class: "text-decoration-none" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
