@@ -20,4 +20,15 @@ class Game < ApplicationRecord
     reviews.average(:rating)&.round(1) || 0.0
   end
   
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Game.where(title: content)
+    elsif method == 'forward'
+      Game.where('title LIKE ?', content + '%')
+    elsif method == 'backward'
+      Game.where('title LIKE ?', '%' + content)
+    else
+      Game.where('title LIKE ?', '%' + content + '%')
+    end
+  end
 end

@@ -10,5 +10,11 @@
       <% elsif @model == 'review' %>
           <h3>レビューの検索結果 "<%= @content %>"</h3>
         <%= render 'reviews/searchindex', reviews: @records %>
+      <% elsif @model == 'game' %>
+          <h3>ゲームの検索結果 "<%= @content %>"</h3>
+        <%= render 'games/searchindex', games: @records %>
+      <% elsif @model == 'genre' %>
+          <h3>ジャンルの検索結果 "<%= @content %>"</h3>
+        <%= render 'genres/searchindex', genres: @records %>
       <% end %>
     </div>

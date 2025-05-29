@@ -1,0 +1,17 @@
+<div class="table-responsive">
+  <table class="table table-striped align-middle text-center">
+    <thead class="thead-light">
+      <tr>
+        <th>ゲーム名</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% games.each do |game| %>
+        <tr>
+          <td><%= link_to game.title, game_path(game) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

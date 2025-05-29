@@ -4,10 +4,18 @@ class SearchesController < ApplicationController
     @model = params[:model]
     @content = params[:content]
     @method = params[:method]
-    if @model == "user"
+
+    case @model
+    when "user"
       @records = User.search_for(@content, @method)
-    else
+    when "review"
       @records = Review.search_for(@content, @method)
+    when "game"
+      @records = Game.search_for(@content, @method)
+    when "genre"
+      @records = Genre.search_for(@content, @method)
+    else
+      @recors = []
     end
   end
 end
