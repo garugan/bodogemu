@@ -5,12 +5,17 @@
     <div class="col-md-8 offset-md-1">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title mb-4">レビュー詳細</h3>
+          <h3 class="card-title mb-4">"<%= link_to @review.game.title, game_path(@review.game) %>"のレビュー</h3>
 
-          <div class="d-flex align-items-center mb-2">
-            <p class="mb-0 mr-2"><strong>評価：</strong></p>
-            <div id="review-rating" data-score="<%= @review.rating %>"></div>
+          <div class="mb-2">
+            <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
+            <span class="ml-3"><%= @user.name %></span>
           </div>
+          <div class="d-flex align-items-center mb-2">
+            <div id="review-rating" data-score="<%= @review.rating %>"></div>
+            <strong class="ml-3"><%= @review.title %></strong>
+          </div>
+          <p class="text-muted"><%= @review.created_at.strftime('%Y/%m/%d') %><strong>に投稿</strong></p>
           <script>
             document.addEventListener("turbolinks:load", function () {
               $('#review-rating').raty({
@@ -25,10 +30,7 @@
             });
           </script>
 
-          <p><strong>タイトル：</strong><%= @review.title %></p>
-          <p><strong>内容：</strong><%= simple_format(@review.body) %></p>
-          <p><strong>ゲーム名：</strong><%= link_to @review.game.title, game_path(@review.game) %></p>
-          <p class="text-muted"><strong>投稿日：</strong><%= @review.created_at.strftime('%Y/%m/%d') %></p>
+          <%= simple_format(@review.body) %>
 
           <% if @review.user == current_user %>
             <div class="mt-3">

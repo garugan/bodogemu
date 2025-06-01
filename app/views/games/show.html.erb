@@ -2,112 +2,115 @@
   <div class="row mb-4">
     <%= render "/users/userinfo" %>
 
-    <div class="col-md-9 d-flex justify-content-center align-items-center">
-      <% if @game.image.attached? %>
-        <%= image_tag @game.image, alt: @game.title, class: "img-thumbnail", style: "width: 300px; height: 300px; object-fit: cover;" %>
-      <% else %>
-        <%= image_tag 'no_image.png', alt: "No Image", class: "img-thumbnail mx-auto d-block", style: "width: 300px;" %>
-      <% end %>
+
+    <div class="col-md-8 offset-md-1">
+      <div class="text-center">
+        <% if @game.image.attached? %>
+          <%= image_tag @game.image, alt: @game.title, class: "img-thumbnail", style: "width: 300px; height: 300px; object-fit: cover;" %>
+        <% else %>
+          <%= image_tag 'no_image.png', alt: "No Image", class: "img-thumbnail mx-auto d-block", style: "width: 300px;" %>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <ul class="list-group mb-4">
-    <div class="list-group-item d-flex align-items-center mb-2">
-      <p class="mb-0 mr-2"><strong>評価：</strong></p>
-      <div id="average-rating" data-score="<%= @game.average_rating %>"></div>
-    </div>
-    <script>
-      document.addEventListener("turbolinks:load", function () {
-        $('#average-rating').raty({
-          readOnly: true,
-          score: function () {
-            return $(this).data('score');
-          },
-          starOff: '<%= image_path("star-off.png") %>',
-          starOn:  '<%= image_path("star-on.png") %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          half: true
-        });
-      });
-    </script>
-    <li class="list-group-item"><strong>タイトル：</strong> <%= @game.title %></li>
-    <li class="list-group-item"><strong>内容：</strong> <%= @game.body %></li>
-    <li class="list-group-item"><strong>ジャンル：</strong> <%= link_to @game.genre.name, genre_path(@game.genre) %></li>
-  </ul>
-
-  <div class="mb-5">
-    <h4 class="mb-3">新規レビュー投稿</h4>
-    <%= render "/layouts/error_messages", object: @review %>
-    <%= form_with model: [@game, Review.new], local: true do |f| %>
-      <div class="form-group">
-        <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title, class: "form-control" %>
-      </div>
-
-      <div class="note note-rating d-flex align-items-center">
-         <p class="mb-0 mr-2">評価</p>
-         <div id="star"></div>
+    <ul class="list-group mb-4">
+      <div class="list-group-item d-flex align-items-center mb-2">
+        <p class="mb-0 mr-2"><strong>評価：</strong></p>
+        <div id="average-rating" data-score="<%= @game.average_rating %>"></div>
       </div>
       <script>
         document.addEventListener("turbolinks:load", function () {
-          $('#star').raty({
+          $('#average-rating').raty({
+            readOnly: true,
+            score: function () {
+              return $(this).data('score');
+            },
             starOff: '<%= image_path("star-off.png") %>',
             starOn:  '<%= image_path("star-on.png") %>',
-            scoreName: 'review[rating]',
+            starHalf: '<%= asset_path('star-half.png') %>',
             half: true
           });
         });
       </script>
+      <li class="list-group-item"><strong>タイトル：</strong> <%= @game.title %></li>
+      <li class="list-group-item"><strong>ジャンル：</strong> <%= link_to @game.genre.name, genre_path(@game.genre) %></li>
+      <li class="list-group-item"><strong>説明：</strong> <%= @game.body %></li>
+    </ul>
 
-      <div class="form-group">
-        <%= f.label :body, "内容" %>
-        <%= f.text_area :body, class: "form-control", rows: 4 %>
-      </div>
+    <div class="mb-5">
+      <h4 class="mb-3">新規レビュー投稿</h4>
+      <%= render "/layouts/error_messages", object: @review %>
+      <%= form_with model: [@game, Review.new], local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
 
-      <%= f.submit '投稿', class: "btn btn-success" %>
-    <% end %>
-  </div>
-
-  <div class="mb-5">
-    <h4 class="mb-3">レビュー一覧</h4>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>タイトル</th>
-          <th>投稿者</th>
-          <th>投稿日</th>
-          <th>評価</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @game.reviews.each do |review| %>
-          <% next if review.id.nil? %>
-          <tr>
-            <td><%= link_to review.title, game_review_path(@game, review) %></td>
-            <td><%= link_to review.user.name, user_path(review.user) %></td>
-            <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
-            <td>
-              <div class="review-rating" data-score="<%= review.rating %>"></div>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-
-      <script>
-        document.addEventListener("turbolinks:load", function () {
-          $('.review-rating').each(function () {
-            var score = $(this).data('score');
-            $(this).raty({
-              readOnly: true,
-              score: score,
+        <div class="note note-rating d-flex align-items-center">
+          <p class="mb-0 mr-2">評価</p>
+          <div id="star"></div>
+        </div>
+        <script>
+          document.addEventListener("turbolinks:load", function () {
+            $('#star').raty({
               starOff: '<%= image_path("star-off.png") %>',
               starOn:  '<%= image_path("star-on.png") %>',
+              scoreName: 'review[rating]',
               half: true
             });
           });
-        });
-      </script>
+        </script>
 
-    </table>
-  </div>
+        <div class="form-group">
+          <%= f.label :body, "内容" %>
+          <%= f.text_area :body, class: "form-control", rows: 4 %>
+        </div>
+
+        <%= f.submit '投稿', class: "btn btn-success" %>
+      <% end %>
+    </div>
+
+    <div class="mb-5">
+      <h4 class="mb-3">レビュー一覧</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>投稿者</th>
+            <th>投稿日</th>
+            <th>評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @game.reviews.each do |review| %>
+            <% next if review.id.nil? %>
+            <tr>
+              <td><%= link_to review.title, game_review_path(@game, review) %></td>
+              <td><%= link_to review.user.name, user_path(review.user) %></td>
+              <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
+                <div class="review-rating" data-score="<%= review.rating %>"></div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+
+        <script>
+          document.addEventListener("turbolinks:load", function () {
+            $('.review-rating').each(function () {
+              var score = $(this).data('score');
+              $(this).raty({
+                readOnly: true,
+                score: score,
+                starOff: '<%= image_path("star-off.png") %>',
+                starOn:  '<%= image_path("star-on.png") %>',
+                half: true
+              });
+            });
+          });
+        </script>
+
+      </table>
+    </div>
 </div>
