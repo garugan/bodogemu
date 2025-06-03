@@ -14,40 +14,48 @@
     </div>
   </div>
 
-    <ul class="list-group mb-4">
-      <div class="list-group-item d-flex align-items-center mb-2">
+    <ul class="list-group mb-5">
+      <li class="list-group-item">
+        <h4 class="mb-0"><strong><%= @game.title %></strong></h4>
+      </li>
+
+      <li class="list-group-item d-flex align-items-center mb-2">
         <p class="mb-0 mr-2"><strong>評価：</strong></p>
         <div id="average-rating" data-score="<%= @game.average_rating %>"></div>
-      </div>
-      <script>
-        document.addEventListener("turbolinks:load", function () {
-          $('#average-rating').raty({
-            readOnly: true,
-            score: function () {
-              return $(this).data('score');
-            },
-            starOff: '<%= image_path("star-off.png") %>',
-            starOn:  '<%= image_path("star-on.png") %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true
-          });
-        });
-      </script>
-      <li class="list-group-item"><strong>タイトル：</strong> <%= @game.title %></li>
+      </li>
+
       <li class="list-group-item"><strong>ジャンル：</strong> <%= link_to @game.genre.name, genre_path(@game.genre) %></li>
+      <li class="list-group-item"><strong>プレイ時間：</strong> <%= @game.playtime %></li>
+      <li class="list-group-item"><strong>プレイ人数：</strong> <%= @game.player %></li>
       <li class="list-group-item"><strong>説明：</strong> <%= @game.body %></li>
     </ul>
 
+    <script>
+      document.addEventListener("turbolinks:load", function () {
+        $('#average-rating').raty({
+          readOnly: true,
+          score: function () {
+            return $(this).data('score');
+          },
+          starOff: '<%= image_path("star-off.png") %>',
+          starOn:  '<%= image_path("star-on.png") %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true
+        });
+      });
+    </script>
+
     <div class="mb-5">
-      <h4 class="mb-3">新規レビュー投稿</h4>
+      <h4 class="mb-3">レビューを書く</h4>
       <%= render "/layouts/error_messages", object: @review %>
+
       <%= form_with model: [@game, Review.new], local: true do |f| %>
         <div class="form-group">
           <%= f.label :title, "タイトル" %>
           <%= f.text_field :title, class: "form-control" %>
         </div>
 
-        <div class="note note-rating d-flex align-items-center">
+        <div class="note note-rating d-flex align-items-center mb-3">
           <p class="mb-0 mr-2">評価</p>
           <div id="star"></div>
         </div>
@@ -61,6 +69,16 @@
             });
           });
         </script>
+
+        <div class="form-group">
+          <%= f.label :playtime, "プレイ時間（分）" %>
+          <%= f.number_field :playtime, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :player, "プレイ人数" %>
+          <%= f.number_field :player, class: "form-control" %>
+        </div>
 
         <div class="form-group">
           <%= f.label :body, "内容" %>

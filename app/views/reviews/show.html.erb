@@ -30,6 +30,9 @@
             });
           </script>
 
+          <p><strong>プレイ時間：</strong><%= @review.playtime %>分</p>
+          <p><strong>プレイ人数：</strong><%= @review.player %>人</p>
+
           <%= simple_format(@review.body) %>
 
           <% if @review.user == current_user %>

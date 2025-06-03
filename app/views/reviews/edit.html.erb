@@ -32,6 +32,16 @@
         </div>
 
         <div class="form-group">
+          <%= f.label :playtime, "プレイ時間（分）" %>
+          <%= f.number_field :playtime, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :player, "プレイ人数" %>
+          <%= f.number_field :player, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
           <%= f.label :body, "内容" %>
           <%= f.text_area :body, class: "form-control", rows: 5 %>
         </div>
