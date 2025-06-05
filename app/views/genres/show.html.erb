@@ -1,12 +1,13 @@
 <div class="container my-4">
   <div class="row">
     <%= render "/users/userinfo" %>
-
+    
     <div class="col-md-8 offset-md-1">
       <h2 class="mb-4">
         <i class="fa-solid fa-tag mr-2"></i><%= @genre.name %>のゲーム一覧
       </h2>
 
+      <% if @games.present? %>
         <div class="table-responsive">
           <table class="table table-striped text-center">
             <thead class="thead-light">
@@ -25,7 +26,9 @@
             </tbody>
           </table>
         </div>
-        
+      <% else %>
+        <p class="text-muted">このジャンルのゲームはまだありません。</p>
+      <% end %>
     </div>
 
   </div>

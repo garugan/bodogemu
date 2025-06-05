@@ -5,9 +5,15 @@ class ReviewCommentsController < ApplicationController
     @review_comment = current_user.review_comments.new(review_comment_params)
     @review_comment.review = @review
     if @review_comment.save
-      redirect_to game_review_path(@game, @review)
+      respond_to do |format|
+        format.html { redirect_to game_review_path(@game, @review) }
+        format.js   # create.js.erb を探す
+      end
     else
-      render 'reviews/show', status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render 'reviews/show' }
+        format.js   # エラー用の JS を作ってもよい
+      end
     end
   end
 
@@ -15,7 +21,11 @@ class ReviewCommentsController < ApplicationController
     @review = Review.find(params[:review_id])
     @comment = @review.review_comments.find(params[:id])
     @comment.destroy
-    redirect_to game_review_path(@review.game, @review), notice: "コメントを削除しました"
+    
+    respond_to do |format|
+      format.html { redirect_to game_review_path(@review.game, @review), notice: "コメントを削除しました" }
+      format.js   # destroy.js.erb を使う
+    end
   end
 
   def index

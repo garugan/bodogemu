@@ -1,0 +1,3 @@
+$('#js-new-comment-body').val('');
+
+$("#review-comments-table tbody").append("<%= j render partial: 'review_comments/comment', locals: { comment: @review_comment } %>");

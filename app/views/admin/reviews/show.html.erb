@@ -2,9 +2,14 @@
   <h2 class="mb-4">レビュー詳細（管理）</h2>
 
   <ul class="list-group mb-4">
-    <li class="list-group-item"><strong>評価：</strong> <div class="review-rating" data-score="<%= @review.rating %>"></div></li>
+    <li class="list-group-item d-flex align-items-center">
+      <strong class="mr-2">評価：</strong>
+      <div class="review-rating" data-score="<%= @review.rating %>"></div>
+    </li>
     <li class="list-group-item"><strong>投稿者：</strong> <%= @review.user.name %></li>
     <li class="list-group-item"><strong>タイトル：</strong> <%= @review.title %></li>
+    <li class="list-group-item"><strong>プレイ時間：</strong><%= @review.playtime %>分</li>
+    <li class="list-group-item"><strong>プレイ人数：</strong><%= @review.player %>人</li>
     <li class="list-group-item"><strong>内容：</strong> <%= @review.body %></li>
     <li class="list-group-item"><strong>ゲーム：</strong> <%= @review.game.title %></li>
     <li class="list-group-item"><strong>投稿日：</strong><%= @review.created_at.strftime("%Y/%m/%d") %></li>
@@ -12,7 +17,7 @@
 
   <script>
   document.addEventListener("turbolinks:load", function () {
-    $('#review-rating').raty({
+    $('.review-rating').raty({
       readOnly: true,
       score: function () {
         return $(this).data('score');
