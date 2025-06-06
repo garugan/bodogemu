@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
+    @reviews = Review.includes(:game, :user).order(created_at: :desc)
   end
 
   def show

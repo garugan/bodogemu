@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-  <div class="container">
+  <div class="container-fluid">
 
     <a class="navbar-brand font-weight-bold" href="<%= user_signed_in? ? user_path(current_user) : root_path %>">
       <i class="fa-solid fa-dice text-primary"></i> ぼどげむ
@@ -24,6 +24,9 @@
           </li>
           <li class="nav-item">
             <%= link_to 'ジャンル', genres_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'レビュー', reviews_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link text-danger" %>

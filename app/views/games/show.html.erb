@@ -12,6 +12,7 @@
         <% end %>
       </div>
     </div>
+
   </div>
 
     <ul class="list-group mb-5">
@@ -65,7 +66,6 @@
               starOff: '<%= image_path("star-off.png") %>',
               starOn:  '<%= image_path("star-on.png") %>',
               scoreName: 'review[rating]',
-              half: true
             });
           });
         </script>
@@ -107,9 +107,7 @@
               <td><%= link_to review.title, game_review_path(@game, review) %></td>
               <td><%= link_to review.user.name, user_path(review.user) %></td>
               <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
-              <td>
-                <div class="review-rating" data-score="<%= review.rating %>"></div>
-              </td>
+              <td><div class="review-rating" data-score="<%= review.rating %>"></div></td>
             </tr>
           <% end %>
         </tbody>
