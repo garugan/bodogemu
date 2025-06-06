@@ -13,24 +13,12 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <% if user_signed_in? %>
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <%= link_to 'マイページ', user_path(current_user), class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ゲーム', games_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ユーザー', users_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ジャンル', genres_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'レビュー', reviews_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link text-danger" %>
-          </li>
+          <li class="nav-item"><%= link_to 'マイページ', user_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'ゲーム', games_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'ユーザー', users_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'ジャンル', genres_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'レビュー', reviews_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link text-danger" %></li>
         </ul>
 
         <%= form_with url: search_path, method: :get, local: true, html: { class: "form-inline my-2 my-lg-0" } do |f| %>
@@ -43,19 +31,11 @@
         <% end %>
 
       <% else %>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <%= link_to '新規登録', new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ゲストログイン', guest_login_path, method: :post, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to '管理者ログイン', admin_root_path, class: "nav-link text-warning" %>
-          </li>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'ゲストログイン', guest_login_path, method: :post, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to '管理者ログイン', admin_root_path, class: "nav-link text-warning" %></li>
         </ul>
       <% end %>
     </div>

@@ -3,7 +3,7 @@ class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @reviews = Review.all
+    @reviews = Review.includes(:game, :user).order(created_at: :desc)
   end
 
   def show

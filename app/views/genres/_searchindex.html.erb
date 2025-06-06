@@ -1,17 +1,21 @@
-<div class="table-responsive">
-  <table class="table table-striped align-middle text-center">
-    <thead class="thead-light">
-      <tr>
-        <th>ジャンル名</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% genres.each do |genre| %>
+<% if genres.present? %>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle text-center">
+      <thead class="thead-light">
         <tr>
-          <td><%= link_to genre.name, genre_path(genre) %></td>
+          <th>ジャンル名</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </thead>
+
+      <tbody>
+        <% genres.each do |genre| %>
+          <tr>
+            <td><%= link_to genre.name, genre_path(genre) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="text-muted">条件に一致するジャンルは見つかりませんでした。</p>
+<% end %>

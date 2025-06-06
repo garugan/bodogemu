@@ -58,16 +58,17 @@
 
       <div class="mb-5">
         <h4 class="mb-3">コメント一覧</h4>
-        <table class="table table-striped" id="review-comments-table">
-          <thead>
-            <tr>
-              <th>内容</th>
-              <th>投稿者</th>
-              <th>投稿日</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
+        <% if @comments.present? %>
+          <table class="table table-striped" id="review-comments-table">
+            <thead>
+              <tr>
+                <th>内容</th>
+                <th>投稿者</th>
+                <th>投稿日</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
               <% @review.review_comments.each do |comment| %>
                 <tr id="comment-<%= comment.id %>">
                   <td><%= comment.comment %></td>
@@ -84,8 +85,11 @@
                   </td>
                 </tr>
               <% end %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        <% else %>
+          <p class="text-muted">このレビューのコメントはまだありません。</p>
+        <% end %>
       </div>
 
     </div>

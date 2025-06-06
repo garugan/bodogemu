@@ -6,7 +6,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
 
-      <%= form_with model: @game, url: admin_games_path, local: true do |f| %>
+      <%= form_with model: [:admin, @game],  local: true do |f| %>
 
         <div class="mb-3">
           <%= f.label :title, "タイトル", class: "form-label" %>

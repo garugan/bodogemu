@@ -91,42 +91,46 @@
 
     <div class="mb-5">
       <h4 class="mb-3">レビュー一覧</h4>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>タイトル</th>
-            <th>投稿者</th>
-            <th>投稿日</th>
-            <th>評価</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @game.reviews.each do |review| %>
-            <% next if review.id.nil? %>
+      <% if @game.reviews.present? %>
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= link_to review.title, game_review_path(@game, review) %></td>
-              <td><%= link_to review.user.name, user_path(review.user) %></td>
-              <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
-              <td><div class="review-rating" data-score="<%= review.rating %>"></div></td>
+              <th>タイトル</th>
+              <th>投稿者</th>
+              <th>投稿日</th>
+              <th>評価</th>
             </tr>
-          <% end %>
-        </tbody>
+          </thead>
+          <tbody>
+            <% @game.reviews.each do |review| %>
+              <% next if review.id.nil? %>
+              <tr>
+                <td><%= link_to review.title, game_review_path(@game, review) %></td>
+                <td><%= link_to review.user.name, user_path(review.user) %></td>
+                <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
+                <td><div class="review-rating" data-score="<%= review.rating %>"></div></td>
+              </tr>
+            <% end %>
+          </tbody>
 
-        <script>
-          document.addEventListener("turbolinks:load", function () {
-            $('.review-rating').each(function () {
-              var score = $(this).data('score');
-              $(this).raty({
-                readOnly: true,
-                score: score,
-                starOff: '<%= image_path("star-off.png") %>',
-                starOn:  '<%= image_path("star-on.png") %>',
-                half: true
+          <script>
+            document.addEventListener("turbolinks:load", function () {
+              $('.review-rating').each(function () {
+                var score = $(this).data('score');
+                $(this).raty({
+                  readOnly: true,
+                  score: score,
+                  starOff: '<%= image_path("star-off.png") %>',
+                  starOn:  '<%= image_path("star-on.png") %>',
+                  half: true
+                });
               });
             });
-          });
-        </script>
+          </script>
 
-      </table>
+        </table>
+      <% else %>
+        <p class="text-muted">このゲームのレビューはまだありません。</p>
+      <% end %>
     </div>
 </div>
