@@ -9,7 +9,7 @@
         <% @games.each do |game| %>
           <div class="col-md-4 mb-4 d-flex">
             <div class="card" style="width: 15rem;">
-              <%= image_tag game.image, alt: game.title, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+              <%= image_tag game.display_image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
               <ul class="list-group list-group-flush text-center">
                 <h5 class="list-group-item"><%= link_to game.title, game_path(game.id), class: "text-decoration-none" %></h5>
                 <li class="list-group-item"><div class="average-rating" data-score="<%= game.average_rating %>"></li>

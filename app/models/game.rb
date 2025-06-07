@@ -19,6 +19,10 @@ class Game < ApplicationRecord
   def average_rating
     reviews.average(:rating)&.round(1) || 0.0
   end
+
+  def display_image
+    image.attached? ? image : "no_image.png"
+  end
   
   def self.search_for(content, method)
     if method == 'perfect'
