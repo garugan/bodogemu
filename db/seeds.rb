@@ -9,6 +9,6 @@
 genre_names = ["すごろく", "陣取り"]
 genre_names.each { |name| Genre.create!(name: name) }
 
-Game.create!(genre_id: 1, title: "sample1", body: "xxxxx")
-Game.create!(genre_id: 2, title: "sample2", body: "xxxxx")
-Game.create!(genre_id: 1, title: "sample3", body: "xxxxx")
+Game.create!(genre_id: 1, title: "sample1", body: "xxxxx", playtime: 50, player: 4)
+Game.create!(genre_id: 2, title: "sample2", body: "xxxxx", playtime: 70, player: 6)
+Game.create!(genre_id: 1, title: "sample3", body: "xxxxx", playtime: 30, player: 2)
