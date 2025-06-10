@@ -17,14 +17,14 @@
               <% @games.each do |game| %>
                 <tr>
                   <td><%= link_to game.title, game_path(game), class: "btn btn-link" %></td>
-                  <td><div id="average-rating" data-score="<%= game.average_rating %>"></div></td>
+                  <td><div class="average-rating" data-score="<%= game.average_rating %>"></div></td>
                 </tr>
               <% end %>
             </tbody>
 
             <script>
               document.addEventListener("turbolinks:load", function () {
-                $('#average-rating').raty({
+                $('.average-rating').raty({
                   readOnly: true,
                   score: function () {
                     return $(this).data('score');
