@@ -10,17 +10,33 @@
             <thead class="thead-light">
               <tr>
                 <th>ゲーム名</th>
+                <th>評価</th>
               </tr>
             </thead>
             <tbody>
               <% @games.each do |game| %>
                 <tr>
-                  <td>
-                    <%= link_to game.title, game_path(game), class: "btn btn-link" %>
-                  </td>
+                  <td><%= link_to game.title, game_path(game), class: "btn btn-link" %></td>
+                  <td><div class="average-rating" data-score="<%= game.average_rating %>"></div></td>
                 </tr>
               <% end %>
             </tbody>
+
+            <script>
+              document.addEventListener("turbolinks:load", function () {
+                $('.review-rating').each(function () {
+                  var score = $(this).data('score');
+                  $(this).raty({
+                    readOnly: true,
+                    score: score,
+                    starOff: '<%= image_path("star-off.png") %>',
+                    starOn:  '<%= image_path("star-on.png") %>',
+                    half: true
+                  });
+                });
+              });
+            </script>
+
           </table>
         </div>
       <% else %>
