@@ -1,1 +1,5 @@
-$("#comment-<%= @comment.id %>").remove();
+<% if @review.review_comments.size >= 1 %>
+  $("#comment-<%= @comment.id %>").remove();
+<% else %>
+  $("#comments_area").html("<%= j render 'reviews/no_comments' %>");
+<% end %>

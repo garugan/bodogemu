@@ -1,3 +1,7 @@
 $('#js-new-comment-body').val('');
 
-$("#review-comments-table tbody").append("<%= j render partial: 'review_comments/comment', locals: { comment: @review_comment } %>");
+<% if @review.review_comments.size == 1 %>
+  $('#comments_area').html('<%= j render 'reviews/comments', review: @review %>');
+<% else %>
+  $("#review-comments-table tbody").append("<%= j render 'review_comments/comment', comment: @review_comment, review: @review %>");
+<% end %>

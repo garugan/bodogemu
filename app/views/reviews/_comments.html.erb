@@ -1,0 +1,15 @@
+        <table class="table table-striped" id="review-comments-table">
+          <thead>
+            <tr>
+              <th>内容</th>
+              <th>投稿者</th>
+              <th>投稿日</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% review.review_comments.each do |comment| %>
+              <%= render 'review_comments/comment', comment: comment, review: review %>
+            <% end %>
+          </tbody>
+        </table>
