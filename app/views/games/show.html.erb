@@ -46,6 +46,10 @@
       });
     </script>
 
+    <div class="text-center mb-5">
+      <%= link_to "← ゲーム一覧に戻る", games_path, class: "btn btn-secondary" %>
+    </div>
+
     <div class="mb-5">
       <h4 class="mb-3">レビューを書く</h4>
       <%= render "/layouts/error_messages", object: @review %>
