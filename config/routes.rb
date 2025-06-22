@@ -15,7 +15,7 @@ devise_for :admins, path: 'admin', controllers: {
 
   root to: "homes#top"
   get "/search", to: "searches#search"
-  post 'guest_login', to: 'users#guest_login'
+  post 'guest_login', to: 'sessions#guest_login'
 
   resources :games do
     resources :reviews do
