@@ -15,10 +15,8 @@
     </tr>
   </table>
 
-  <% unless current_user.email == "guest@guest.com" %>
     <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fa-solid fa-user-gear mr-1"></i>プロフィール編集
     <% end %>
-  <% end %>
 
 </div>
