@@ -15,6 +15,10 @@
     <%= link_to '削除', admin_dashboard_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger ml-2"  %> 
   </div>
 
+  <div class="text-center mt-4">
+    <%= link_to 'ユーザー一覧に戻る', admin_root_path, class: "btn btn-secondary" %>
+  </div>
+
   <h2 class="mb-4 mt-5">
     <i class="fa-solid fa-comments mr-2"></i><%= @user.name %>のレビュー一覧
   </h2>

@@ -9,7 +9,7 @@ class Admin::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
-      redirect_to admin_games_path notice: "ゲームを追加しました"
+      redirect_to admin_game_path(@game), notice: "ゲームを追加しました"
     else
       render :new
     end
