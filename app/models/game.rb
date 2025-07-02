@@ -17,7 +17,11 @@ class Game < ApplicationRecord
   end
 
   def average_rating
-    reviews.average(:rating)&.round(1) || 0.0
+    if has_attribute?(:avg_rating)
+      avg_rating&.round(1)
+    else
+      reviews.average(:rating)&.round(1)
+    end
   end
 
   def display_image

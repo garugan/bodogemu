@@ -5,6 +5,13 @@
     <div class="col-md-8 offset-md-1">
       <h2 class="mb-4"><i class="fa-solid fa-dice mr-2"></i>ゲーム一覧</h2>
 
+    <div class="mb-4">
+      <span class="fw-bold me-2">並び替え：</span>
+      <%= link_to '最新', games_path(sort: 'newest'), class: "btn btn-sm btn-outline-secondary me-2" %>
+      <%= link_to '名前', games_path(sort: 'name'), class: "btn btn-sm btn-outline-secondary me-2" %>
+      <%= link_to '評価', games_path(sort: 'rating'), class: "btn btn-sm btn-outline-secondary" %>
+    </div>
+
       <div class="row">
         <% @games.each do |game| %>
           <div class="col-md-4 mb-4 d-flex">
@@ -12,7 +19,7 @@
               <%= image_tag game.display_image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
               <ul class="list-group list-group-flush text-center">
                 <h5 class="list-group-item"><%= link_to game.title, game_path(game.id), class: "text-decoration-none" %></h5>
-                <li class="list-group-item"><div class="average-rating" data-score="<%= game.average_rating %>"></li>
+                <li class="list-group-item"><div class="average-rating" data-score="<%= game.average_rating.to_f %>"></div></li>
                 <li class="list-group-item"><a>ジャンル：</a><%= link_to game.genre.name, genre_path(game.genre), class: "text-decoration-none" %></li>
               </ul>
             </div>

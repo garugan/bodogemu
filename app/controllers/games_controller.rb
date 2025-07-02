@@ -3,8 +3,20 @@ class GamesController < ApplicationController
   end
 
   def index
-    @user = current_user
-    @games = Game.all
+    @games = case params[:sort]
+              when 'newest'
+                Game.order(created_at: :desc)
+              when 'name'
+                Game.order(:title)
+              when 'rating'
+                Game
+                  .left_joins(:reviews)
+                  .select('games.*, AVG(reviews.rating) AS avg_rating')
+                  .group('games.id')
+                  .order(Arel.sql('avg_rating DESC NULLS LAST'))
+             else
+               Game.all
+             end
   end
 
   def show
