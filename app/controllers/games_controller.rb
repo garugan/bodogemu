@@ -13,7 +13,7 @@ class GamesController < ApplicationController
                   .left_joins(:reviews)
                   .select('games.*, AVG(reviews.rating) AS avg_rating')
                   .group('games.id')
-                  .order(Arel.sql('avg_rating DESC NULLS LAST'))
+                  .order(Arel.sql('AVG(reviews.rating) IS NULL, AVG(reviews.rating) DESC'))
              else
                Game.all
              end
