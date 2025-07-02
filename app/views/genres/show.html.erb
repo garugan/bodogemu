@@ -1,47 +1,49 @@
 <div class="container my-4">
   <div class="row">
     <%= render "/users/userinfo" %>
-    
+
     <div class="col-md-8 offset-md-1">
-      <h2 class="mb-4"><i class="fa-solid fa-tag mr-2"></i><%= @genre.name %>のゲーム一覧</h2>
+      <h2 class="mb-4">
+        <i class="fa-solid fa-tag mr-2"></i><%= @genre.name %>のゲーム一覧
+      </h2>
+
       <% if @games.present? %>
-        <div class="table-responsive">
-          <table class="table table-striped text-center">
-            <thead class="thead-light">
-              <tr>
-                <th>ゲーム名</th>
-                <th>評価</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @games.each do |game| %>
-                <tr>
-                  <td><%= link_to game.title, game_path(game), class: "btn btn-link" %></td>
-                  <td><div class="average-rating" data-score="<%= game.average_rating %>"></div></td>
-                </tr>
+        <div class="row">
+          <% @games.each do |game| %>
+            <div class="col-md-4 mb-4 d-flex">
+              <%= link_to game_path(game), class: "text-decoration-none text-dark w-100" do %>
+                <div class="card shadow-sm" style="width: 100%;">
+                  <%= image_tag game.display_image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+                  <div class="card-body text-center">
+                    <h5 class="card-title"><%= game.title %></h5>
+                    <div class="average-rating" data-score="<%= game.average_rating %>"></div>
+                  </div>
+                </div>
               <% end %>
-            </tbody>
-
-            <script>
-              document.addEventListener("turbolinks:load", function () {
-                $('.average-rating').raty({
-                  readOnly: true,
-                  score: function () {
-                    return $(this).data('score');
-                  },
-                  starOff: '<%= image_path("star-off.png") %>',
-                  starOn:  '<%= image_path("star-on.png") %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  half: true
-                });
-              });
-            </script>
-
-          </table>
+            </div>
+          <% end %>
         </div>
+
+        <script>
+          document.addEventListener("turbolinks:load", function () {
+            $('.average-rating').raty({
+              readOnly: true,
+              score: function () {
+                return $(this).data('score');
+              },
+              starOff: '<%= image_path("star-off.png") %>',
+              starOn:  '<%= image_path("star-on.png") %>',
+              starHalf: '<%= image_path("star-half.png") %>',
+              half: true
+            });
+          });
+        </script>
       <% else %>
         <p class="text-muted">このジャンルのゲームはまだありません。</p>
       <% end %>
+      <div class="text-center mt-5">
+        <%= link_to "← ジャンル一覧に戻る", genres_path, class: "btn btn-secondary" %>
+      </div>
     </div>
 
   </div>

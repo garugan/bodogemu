@@ -5,24 +5,21 @@
     <div class="col offset-md-1">
       <h2 class="mb-4"><i class="fa-solid fa-tags mr-2"></i>ジャンル一覧</h2>
 
-      <table class="table table-striped text-center">
-        <thead class="thead-light">
-          <tr>
-            <th>タイトル</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @genres.each do |genre| %>
-            <tr>
-              <td>
-                <%= link_to genre.name, genre_path(genre), class: "text-decoration-none" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="row">
+        <% @genres.each do |genre| %>
+          <div class="col-md-4 col-sm-6 mb-4">
+            <%= link_to genre_path(genre), class: "text-decoration-none text-dark" do %>
+              <div class="card h-100 shadow-sm border-0 hover-shadow">
+                <div class="card-body text-center">
+                  <i class="fa-solid fa-tag fa-2x mb-3 text-primary"></i>
+                  <h5 class="card-title"><%= genre.name %></h5>
+                  <p class="text-muted"><%= genre.try(:games_count) || 0 %> 件</p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-
   </div>
 </div>

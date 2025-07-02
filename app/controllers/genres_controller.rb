@@ -5,6 +5,8 @@ class GenresController < ApplicationController
   end
 
   def index
-    @genres = Genre.all
+    @genres = Genre.left_joins(:games)
+                    .select('genres.*, COUNT(games.id) as games_count')
+                    .group('genres.id')
   end
 end
