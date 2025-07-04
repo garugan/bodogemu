@@ -11,6 +11,7 @@
             <tr>
               <th>画像</th>
               <th>名前</th>
+              <th>自己紹介</th>
               <th></th>
             </tr>
           </thead>
@@ -20,6 +21,7 @@
               <tr>
                 <td><%= image_tag user.get_profile_image(80, 80), class: "rounded-circle" %></td>
                 <td class="align-middle"><%= user.name %></td>
+                <td class="align-middle"><%= user.introduction %></td>
                 <td class="align-middle"><%= link_to "投稿レビュー", user_path(user.id), class: "btn btn-outline-primary btn-sm" %></td>
               </tr>
             <% end %>
