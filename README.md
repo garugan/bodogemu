@@ -21,7 +21,10 @@
 * 気になったボードゲームの評価を見たいとき
 ​
 ## 設計書
-後ほど作成予定
+* AWS構成図
+* https://drive.google.com/file/d/1phV5eHyODk-aV9DYd8yQmUTLXqk4CkBE/view?usp=sharing
+* AWSインフラ設計書
+* https://docs.google.com/spreadsheets/d/1yOmptzzg2K8-L3AXvsNE7IDP2l6lS9QV_sinEnbruNc/edit?usp=sharing
 ​
 ## 開発環境
 - OS：Linux(CentOS)
