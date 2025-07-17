@@ -50,6 +50,10 @@
           <%= link_to "削除", game_review_path(@review.game, @review), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
         </div>
       <% end %>
+
+      <div class="mt-5">
+        <%= link_to "← レビュー詳細に戻る", game_review_path, class: "btn btn-secondary" %>
+      </div>
     </div>
   </div>
 </div>
