@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe '投稿のテスト', type: :system do
+RSpec.describe 'Top画面のテスト', type: :system do
   let!(:user) { create(:user) }
   let!(:game) { create(:game) }
   let!(:review) { create(:review, title:'hoge',body:'body') }

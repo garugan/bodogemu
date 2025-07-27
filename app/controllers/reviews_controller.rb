@@ -58,7 +58,7 @@ class ReviewsController < ApplicationController
     end
     game = @review.game
     @review.destroy
-    redirect_to game_path(game)
+    redirect_to user_path(current_user)
   end
 
   private
