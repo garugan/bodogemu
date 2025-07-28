@@ -6,6 +6,17 @@
           <h3 class="mb-0">ログイン</h3>
         </div>
         <div class="card-body">
+        
+          <%# ログイン認証失敗時のエラーメッセージを表示 %>
+          <% if alert %>
+            <div class="alert alert-danger">
+              <%# 認証失敗は通常1件のエラーなので、固定で「1件」と表示 %>
+              <h2>エラーが発生しました</h2>
+              <ul>
+                <li><%= alert %></li>
+              </ul>
+            </div>
+          <% end %>
 
           <%= form_with model: @user, url: user_session_path, local: true do |f| %>
 

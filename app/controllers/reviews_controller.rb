@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     @review = @game.reviews.new(review_params)
     @review.user_id = current_user.id
     if @review.save
-      redirect_to game_review_path(@game, @review)
+      redirect_to game_review_path(@game, @review), notice: "レビューを投稿しました"
     else
       @genre = Genre.find(@game.genre_id)
       @user = current_user
@@ -53,12 +53,13 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    unless @review.user == current_user
-      redirect_to game_review_path
+    user = @review.user
+    unless user == current_user
+      redirect_to game_review_path(@review.game)
+      return
     end
-    game = @review.game
     @review.destroy
-    redirect_to user_path(current_user)
+    redirect_to user_path(user), notice: "レビューを削除しました"
   end
 
   private

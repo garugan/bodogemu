@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      review:
+        title: "タイトル"
+        body: "内容"
+      user:
+        email: "メールアドレス"
+        name: "名前"
+        password: "パスワード"
