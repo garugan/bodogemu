@@ -5,6 +5,9 @@ class Review < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+  validates :playtime, presence: true
+  validates :player, presence: true
+  validates :rating, presence: true
 
   def self.search_for(content, method)
     if method == 'perfect'

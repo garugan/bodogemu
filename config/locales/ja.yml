@@ -4,6 +4,9 @@ ja:
       review:
         title: "タイトル"
         body: "内容"
+        playtime: "プレイ時間"
+        player: "プレイ人数"
+        rating: "評価"
       user:
         email: "メールアドレス"
         name: "名前"
